@@ -1,0 +1,4 @@
+name: GPClaimRollback
+version: '${project.version}'
+main: me.lukasschr.gpclaimrollback.GPClaimRollback
+api-version: '1.20'
