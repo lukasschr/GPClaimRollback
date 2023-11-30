@@ -7,22 +7,6 @@ import java.util.List;
 
 public class CoreProtectRollback implements Runnable{
 
-    /*
-    performRollback (https://docs.coreprotect.net/api/version/v9/)
-    This will perform a rollback. Method must be called ASYNC!
-    performRollback(int time, List<String> restrict_users, List<String> exclude_users, List<Object> restrict_blocks,
-                    List<Object> exclude_blocks, List<Integer> action_list, int radius, Location radius_location)
-
-    time: Specify the amount of time to rollback. "5" would return results from the last 5 seconds.
-    restrict_users: Specify any usernames to perform the rollback on. Can be set to "null" if both a radius and a location are specified.
-    exclude_users: Specify any usernames to exclude from the rollback. Can be set to "null".
-    restrict_blocks: Specify a list of EntityType's or Material's to restrict the rollback to. Can be set to "null".
-    exclude_blocks: Specify a list of EntityType's or Material's to exclude from the rollback. Can be set to "null".
-    action_list: Specify a list of action types to restrict the rollback to. Can be set to "null"
-    radius: Specify a radius to restrict the rollback to. A location must be specified if using this. Set to "0" to disable.
-    radius_location: Specify a location to rollback around. Can be set to "null" if no radius is specified, and a user is specified.
-     */
-
     CoreProtectAPI api;
     int time;
     List<String> restrict_users;
@@ -33,6 +17,20 @@ public class CoreProtectRollback implements Runnable{
     int radius;
     Location radius_location;
 
+    /**
+     * Initializes a CoreProtectRollback instance for performing rollbacks using CoreProtect.
+     * Refer to the <a href="https://docs.coreprotect.net/api/version/v9/">CoreProtect API reference</a> for more details.
+     *
+     * @param coreProtectAPI    CoreProtectAPI instance,
+     * @param time              Specify the amount of time to rollback. "5" would return results from the last 5 seconds.
+     * @param restrict_users    Specify any usernames to perform the rollback on. Can be set to "null" if both a radius and a location are specified.
+     * @param exclude_users     Specify any usernames to exclude from the rollback. Can be set to "null".
+     * @param restrict_blocks   Specify a list of EntityType's or Material's to restrict the rollback to. Can be set to "null".
+     * @param exclude_blocks    Specify a list of EntityType's or Material's to exclude from the rollback. Can be set to "null".
+     * @param action_list       Specify a list of action types to restrict the rollback to. Can be set to "null"
+     * @param radius            Specify a radius to restrict the rollback to. A location must be specified if using this. Set to "0" to disable.
+     * @param radius_location   Specify a location to rollback around. Can be set to "null" if no radius is specified, and a user is specified.
+     */
     public CoreProtectRollback(CoreProtectAPI coreProtectAPI, int time, List<String> restrict_users,
                                List<String> exclude_users, List<Object> restrict_blocks, List<Object> exclude_blocks,
                                List<Integer> action_list, int radius, Location radius_location) {
@@ -48,6 +46,9 @@ public class CoreProtectRollback implements Runnable{
     }
 
 
+    /**
+     * Performs rollback asynchronous
+     */
     @Override
     public void run() {
         assert api != null;

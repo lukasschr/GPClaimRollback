@@ -17,18 +17,22 @@ public final class GPClaimRollback extends JavaPlugin {
     @Override
     public void onDisable() {}
 
+    /**
+     * Returns an instance of the CoreProtectAPI
+     *
+     * @return  CoreProtectAPI instance, or null if CoreProtect is not loaded or disabled.
+     */
     public CoreProtectAPI getCoreProtectAPI() {
         Plugin plugin = getServer().getPluginManager().getPlugin("CoreProtect");
-
-        if (!(plugin instanceof CoreProtect)) { // check if CoreProtect is loaded
+        // check if CoreProtect is loaded
+        if (!(plugin instanceof CoreProtect)) {
             return null;
         }
-
+        // check if CoreProtect API is enabled
         CoreProtectAPI CoreProtect = ((CoreProtect) plugin).getAPI();
-        if (!CoreProtect.isEnabled()) { // check if the API is enabled
+        if (!CoreProtect.isEnabled()) {
             return null;
         }
-
         return CoreProtect;
     }
 }

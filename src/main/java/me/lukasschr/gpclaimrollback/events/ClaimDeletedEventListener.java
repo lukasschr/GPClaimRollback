@@ -21,6 +21,16 @@ public class ClaimDeletedEventListener implements Listener {
 
     public ClaimDeletedEventListener(GPClaimRollback plugin) {this.plugin = plugin;}
 
+    /**
+     * Handles the ClaimDeletedEvent by initiating a rollback process using CoreProtect.
+     * <p>
+     * Once a player deletes a claim, this method performs a rollback
+     * so that all changes made since the claim was created are reset.
+     * For this purpose, the necessary variables are determined and calculated.
+     * It then creates a new thread to perform the rollback using CoreProtectRollback.
+     *
+     * @param event ClaimDeletedEvent triggered when a claim is deleted.
+     */
     @EventHandler
     public void onClaimDeletedEvent(ClaimDeletedEvent event) {
         Claim claim = event.getClaim();
@@ -42,7 +52,6 @@ public class ClaimDeletedEventListener implements Listener {
                 claimCenter
         ));
         performRollback.start();
-
     }
 
     private Integer calculateRollbackTime(Claim claim) {
@@ -78,5 +87,4 @@ public class ClaimDeletedEventListener implements Listener {
         claimPlayers.add(claim.getOwnerName());
         return claimPlayers;
     }
-
 }
